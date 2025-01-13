@@ -23,7 +23,19 @@ warnings.filterwarnings('ignore')
 session_state = st.session_state
 if "user_index" not in st.session_state:
     st.session_state["user_index"] = 0
+file_url = 'https://1drv.ms/u/s!AiZs90sT-2LzdaOaPiyKgFkalhc?e=jh2gYJ'
 
+# Send GET request to download the file
+response = requests.get(file_url)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Save the .h5 file locally
+    with open('model.h5', 'wb') as f:
+        f.write(response.content)
+    print("File downloaded successfully!")
+else:
+    print(f"Failed to download file. Status code: {response.status_code}")
 
 def signup(json_file_path="data.json"):
     st.title("Signup Page")
