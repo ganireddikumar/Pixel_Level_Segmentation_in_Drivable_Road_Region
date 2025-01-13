@@ -209,7 +209,7 @@ def main(json_file_path="data.json"):
                 "Choose a image (PNG)", type=["png"]
             )
             if st.button("Upload") and uploaded_image is not None:
-                st.image(uploaded_image, use_column_width=True)
+                st.image(uploaded_image, use_container_width=True)
                 st.success("Image uploaded successfully!")
                 image = predict(uploaded_image)[0]
                 img = tf.keras.preprocessing.image.array_to_img(image.numpy())
