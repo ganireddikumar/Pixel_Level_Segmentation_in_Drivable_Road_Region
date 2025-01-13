@@ -16,6 +16,7 @@ import mpld3
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 import warnings
+import requests
 warnings.filterwarnings('ignore')
 
 
