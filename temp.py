@@ -34,20 +34,24 @@ import warnings
 warnings.filterwarnings('ignore')
 import requests
 
-# Public URL for the .h5 file (replace with your actual file link)
-file_url = 'https://1drv.ms/u/s!AiZs90sT-2LzdaOaPiyKgFkalhc?e=jh2gYJ'
+def download_model_from_onedrive():
+    file_url = 'https://onedrive.live.com/download?cid=your_cid&resid=your_resid&authkey=your_authkey'
+    response = requests.get(file_url)
 
-# Send GET request to download the file
-response = requests.get(file_url)
+    if response.status_code == 200:
+        with open('model.h5', 'wb') as f:
+            f.write(response.content)
+        print("Model downloaded successfully!")
+    else:
+        print(f"Failed to download model. Status code: {response.status_code}")
 
-# Check if the request was successful (status code 200)
-if response.status_code == 200:
-    # Save the .h5 file locally
-    with open('model.h5', 'wb') as f:
-        f.write(response.content)
-    print("File downloaded successfully!")
-else:
-    print(f"Failed to download file. Status code: {response.status_code}")
+# Check if model already exists
+if not os.path.exists('model.h5'):
+    download_model_from_onedrive()
+
+# Load the model
+from tensorflow.keras.models import load_model
+model = load_model('model.h5')
 
 
 session_state = st.session_state
