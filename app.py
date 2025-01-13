@@ -16,7 +16,6 @@ import mpld3
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 import warnings
-from temp import model
 warnings.filterwarnings('ignore')
 
 
@@ -33,9 +32,6 @@ if response.status_code == 200:
     # Save the .h5 file locally
     with open('model.h5', 'wb') as f:
         f.write(response.content)
-    print("File downloaded successfully!")
-else:
-    print(f"Failed to download file. Status code: {response.status_code}")
 
 def signup(json_file_path="data.json"):
     st.title("Signup Page")
