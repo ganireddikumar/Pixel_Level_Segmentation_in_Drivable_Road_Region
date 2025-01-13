@@ -1,0 +1,6 @@
+streamlit
+tensorflow==2.11.0  # or any compatible version you're using
+numpy
+pandas
+scikit-learn
+matplotlib
